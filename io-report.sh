@@ -248,15 +248,17 @@ function io_trait()
 		return 1
 	fi
 	local disk=`get_device "${dir}"`
+  local mopt=$(mount | grep ${disk})
 
 	check_all_installed
 
 	local log="./io-report.`hostname`.`basename ${disk}`.log"
 	echo "IO trait report created by [io-report.sh]" > "${log}"
-	echo "    host: `hostname`" >> "${log}"
-	echo "    file: ${file}" >> "${log}"
-	echo "    disk: ${disk}" >> "${log}"
-	echo "    date: `date +%D-%T`" >> "${log}"
+	echo "    host : `hostname`" >> "${log}"
+	echo "    file : ${file}" >> "${log}"
+	echo "    disk : ${disk}" >> "${log}"
+	echo "    mount: ${mopt}" >> "${log}"
+	echo "    date : `date +%D-%T`" >> "${log}"
 	echo "" >> "${log}"
 	echo "Get involved:" >> "${log}"
 	echo "    https://github.com/innerr/io-report" >> "${log}"
